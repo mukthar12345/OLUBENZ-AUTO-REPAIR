@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Models - Olubenz Auto Repair Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #0052cc;
+            --secondary: #ff6b35;
+            --accent: #00c853;
+            --dark: #0d1440;
+            --light: #f8f9fa;
+            --text: #2d3748;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --gradient: linear-gradient(135deg, var(--primary) 0%, #1a237e 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, #ff8e00 100%);
+            --card-gradient: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Inter', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 100px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.5px;
+        }
+        
+        h2 {
+            font-size: 2.8rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 5px;
+            background: var(--gradient-secondary);
+            border-radius: 3px;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: var(--dark);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #4a5568;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.7s;
+        }
+        
+        .btn:hover:before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: var(--gradient-secondary);
+        }
+        
+        .btn-large {
+            padding: 16px 42px;
+            font-size: 1.2rem;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: rgba(13, 20, 64, 0.95);
+            color: white;
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+            margin-left: 5px;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover:after, 
+        nav ul li a.active:after {
+            width: 100%;
+        }
+        
+        nav ul li a:hover, 
+        nav ul li a.active {
+            color: var(--secondary);
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(135deg, rgba(0, 82, 204, 0.85) 0%, rgba(26, 35, 126, 0.85) 100%), 
+                        url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease 0.2s both;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        
+        /* Floating Action Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .floating-btn:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .floating-btn:hover:after {
+            opacity: 1;
+        }
+        
+        .floating-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+        
+        .floating-btn.call {
+            background: var(--gradient);
+            animation: pulse 2s infinite;
+        }
+        
+        .floating-btn.whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+        
+        /* Car Models Section */
+        .car-models {
+            background-color: white;
+            padding: 100px 0;
+        }
+        
+        .car-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 4rem;
+        }
+        
+        .filter-btn {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            color: var(--text);
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--gradient);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .car-card {
+            background: var(--card-gradient);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .car-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .car-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .car-image:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.1);
+        }
+        
+        .car-content {
+            padding: 2rem;
+        }
+        
+        .car-content h3 {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            color: var(--dark);
+        }
+        
+        .car-content h3 i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .car-specs {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        
+        .car-specs li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .car-specs li:before {
+            content: '•';
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Engineers at Work Section */
+        .engineers-work {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .engineers-work:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+            opacity: 0.03;
+            z-index: 0;
+        }
+        
+        .engineers-work .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .engineers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .engineer-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.5s ease;
+        }
+        
+        .engineer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .engineer-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .engineer-content {
+            padding: 2rem;
+        }
+        
+        .engineer-content h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        /* Service Areas Section */
+        .service-areas {
+            background-color: var(--dark);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-areas:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/diagmonds.png');
+            opacity: 0.1;
+        }
+        
+        .service-areas .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .service-areas h2 {
+            color: white;
+        }
+        
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .area-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+        
+        .area-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .area-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1549399542-7e3f8b79c341?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .cta .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta h2 {
+            color: white;
+        }
+        
+        .cta h2:after {
+            background: var(--gradient-secondary);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #0a0f2d;
+            color: white;
+            padding: 4rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--secondary);
+            margin-bottom: 1.8rem;
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--gradient-secondary);
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #a0aec0;
+            margin-bottom: 1rem;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.5rem;
+            }
+            
+            .cars-grid, .engineers-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: var(--dark);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 1.5rem;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0.8rem 0;
+            }
+            
+            .hero {
+                height: 60vh;
+                margin-top: 70px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cars-grid, .engineers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .floating-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .floating-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .hero {
+                height: 50vh;
+            }
+            
+            .car-content, .engineer-content {
+                padding: 1.5rem;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 82, 204, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(0, 82, 204, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 82, 204, 0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+        <a href="tel:07025190359" class="floating-btn call">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://wa.me/2347025190359" class="floating-btn whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo"><i class="fas fa-car"></i>OLUBENZ <span>AUTO</span></div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="mainMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="cars.html" class="active">Car Models</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Expert Service for All Car Models</h1>
+            <p>We specialize in repairing and maintaining a wide range of vehicles. From compact cars to luxury SUVs, our certified engineers have the expertise to handle any automotive issue.</p>
+            <div class="hero-btns">
+                <a href="tel:07025190359" class="btn btn-large"><i class="fas fa-phone"></i> CALL FOR CONSULTATION</a>
+                <a href="#cars" class="btn btn-secondary btn-large"><i class="fas fa-car"></i> VIEW CAR MODELS</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Car Models Section -->
+    <section class="car-models" id="cars">
+        <div class="container">
+            <h2>Popular Nigerian Car Models</h2>
+            
+            <div class="car-filter">
+                <button class="filter-btn active" data-filter="all">All Models</button>
+                <button class="filter-btn" data-filter="toyota">Toyota</button>
+                <button class="filter-btn" data-filter="honda">Honda</button>
+                <button class="filter-btn" data-filter="nissan">Nissan</button>
+                <button class="filter-btn" data-filter="other">Other Brands</button>
+            </div>
+            
+            <div class="cars-grid">
+                <!-- Toyota Camry -->
+                <div class="car-card" data-brand="toyota">
+                    <div class="car-image" style="background-image: url('https://images.unsplash.com/photo-1621135802920-133df287f89c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="car-content">
+                        <h3><i class="fas fa-car"></i> Toyota Camry</h3>
+                        <p>Reliable midsize sedan known for its comfort, fuel efficiency, and longevity.</p>
+                        <ul class="car-specs">
+                            <li>Engine: 2.5L 4-cylinder / 3.5L V6</li>
+                            <li>Transmission: 8-speed automatic</li>
+                            <li>Fuel Economy: 28-41 MPG</li>
+                            <li>Common Issues: Transmission, electrical</li>
+                        </ul>
+                        <a href="contact.html" class="btn"><i class="fas fa-wrench"></i> Schedule Service</a>
+                    </div>
+                </div>
+                
+                <!-- Toyota Corolla -->
+                <div class="car-card" data-brand="toyota">
+                    <div class="car-image" style="background-image: url('https://images.unsplash.com/photo-1580274437635-5c71077d4b9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="car-content">
+                        <h3><i class="fas fa-car"></i> Toyota Corolla</h3>
+                        <p>World's best-selling compact car, renowned for reliability and efficiency.</p>
+                        <ul class="car-specs">
+                            <li>Engine: 1.8L 4-cylinder</li>
+                            <li>Transmission: CVT / 6-speed manual</li>
+                            <li>Fuel Economy: 30-40 MPG</li>
+                            <li>Common Issues: CVT, suspension</li>
+                        </ul>
+                        <a href="contact.html" class="btn"><i class="fas fa-wrench"></i> Schedule Service</a>
+                    </div>
+                </div>
+                
+                <!-- Toyota Highlander -->
+                <div class="car-card" data-brand="toyota">
+                    <div class="car-image" style="background-image: url('https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="car-content">
+                        <h3><i class="fas fa-car"></i> Toyota Highlander</h3>
+                        <p>Spacious and reliable SUV perfect for Nigerian families and road trips.</p>
+                        <ul class="car-specs">
+                            <li>Engine: 3.5L V6 / 2.5L Hybrid</li>
+                            <li>Transmission: 8-speed automatic</li>
+                            <li>Fuel Economy: 21-36 MPG</li>
+                            <li>Common Issues: Suspension, electrical</li>
+                        </ul>
+                        <a href="contact.html" class="btn"><i class="fas fa-wrench"></i> Schedule Service</a>
+                    </div>
+                </div>
+                
+                <!-- Mercedes-Benz C-Class -->
+                <div class="car-card" data-brand="other">
+                    <div class="car-image" style="background-image: url('https://images.unsplash.com/photo-1621135802920-133df287f89c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="car-content">
+                        <h3><i class="fas fa-car"></i> Mercedes-Benz C-Class</h3>
+                        <p>Luxury compact executive car with premium features and performance.</p>
+                        <ul class="car-specs">
+                            <li>Engine: 2.0L Turbo / 3.0L V6</li>
+                            <li>Transmission: 9-speed automatic</li>
+                            <li>Fuel Economy: 23-35 MPG</li>
+                            <li>Common Issues: Electrical, suspension</li>
+                        </ul>
+                        <a href="contact.html" class="btn"><i class="fas fa-wrench"></i> Schedule Service</a>
+                    </div>
+                </div>
+                
+                <!-- Honda Accord -->
+                <div class="car-card" data-brand="honda">
+                    <div class="car-image" style="background-image: url('https://images.unsplash.com/photo-1621135802920-133df287f89c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="car-content">
+                        <h3><i class="fas fa-car"></i> Honda Accord</h3>
+                        <p>Premium midsize sedan with refined performance and spacious interior.</p>
+                        <ul class="car-specs">
+                            <li>Engine: 1.5L Turbo / 2.0L Turbo</li>
+                            <li>Transmission: CVT / 10-speed automatic</li>
+                            <li>Fuel Economy: 29-48 MPG</li>
+                            <li>Common Issues: Battery, transmission</li>
+                        </ul>
+                        <a href="contact.html" class="btn"><i class="fas fa-wrench"></i> Schedule Service</a>
+                    </div>
+                </div>
+                
+                <!-- Nissan Altima -->
+                <div class="car-card" data-brand="nissan">
+                    <div class="car-image" style="background-image: url('https://images.unsplash.com/photo-1621135802920-133df287f89c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="car-content">
+                        <h3><i class="fas fa-car"></i> Nissan Altima</h3>
+                        <p>Comfortable midsize sedan with available all-wheel drive.</p>
+                        <ul class="car-specs">
+                            <li>Engine: 2.5L / 2.0L VC-Turbo</li>
+                            <li>Transmission: CVT</li>
+                            <li>Fuel Economy: 28-39 MPG</li>
+                            <li>Common Issues: CVT transmission, sensors</li>
+                        </ul>
+                        <a href="contact.html" class="btn"><i class="fas fa-wrench"></i> Schedule Service</a>
+                    </div>
+                </div>
+                
+                <!-- Lexus RX -->
+                <div class="car-card" data-brand="other">
+                    <div class="car-image" style="background-image: url('https://images.unsplash.com/photo-1621135802920-133df287f89c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="car-content">
+                        <h3><i class="fas fa-car"></i> Lexus RX</h3>
+                        <p>Luxury SUV with premium comfort and advanced safety features.</p>
+                        <ul class="car-specs">
+                            <li>Engine: 3.5L V6 / 2.5L Hybrid</li>
+                            <li>Transmission: 8-speed automatic</li>
+                            <li>Fuel Economy: 19-31 MPG</li>
+                            <li>Common Issues: Electrical, infotainment</li>
+                        </ul>
+                        <a href="contact.html" class="btn"><i class="fas fa-wrench"></i> Schedule Service</a>
+                    </div>
+                </div>
+                
+                <!-- Ford Explorer -->
+                <div class="car-card" data-brand="other">
+                    <div class="car-image" style="background-image: url('https://images.unsplash.com/photo-1621135802920-133df287f89c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="car-content">
+                        <h3><i class="fas fa-car"></i> Ford Explorer</h3>
+                        <p>Spacious American SUV with powerful performance and modern tech.</p>
+                        <ul class="car-specs">
+                            <li>Engine: 2.3L EcoBoost / 3.0L V6</li>
+                            <li>Transmission: 10-speed automatic</li>
+                            <li>Fuel Economy: 21-27 MPG</li>
+                            <li>Common Issues: Transmission, electronics</li>
+                        </ul>
+                        <a href="contact.html" class="btn"><i class="fas fa-wrench"></i> Schedule Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Engineers at Work Section -->
+    <section class="engineers-work">
+        <div class="container">
+            <h2>Our Engineers in Action</h2>
+            <p class="text-center" style="max-width: 800px; margin: 0 auto 3rem;">See our certified technicians at work, providing expert service for all types of vehicles with precision and care.</p>
+            
+            <div class="engineers-grid">
+                <div class="engineer-card fade-in">
+                    <div class="engineer-image" style="background-image: url('https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="engineer-content">
+                        <h3>Engine Diagnostics</h3>
+                        <p>Our engineers use advanced diagnostic equipment to pinpoint issues with precision, ensuring accurate repairs the first time.</p>
+                    </div>
+                </div>
+                
+                <div class="engineer-card fade-in">
+                    <div class="engineer-image" style="background-image: url('https://images.unsplash.com/photo-1603712610496-5365ac5c5e2b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="engineer-content">
+                        <h3>Brake System Service</h3>
+                        <p>Comprehensive brake inspection and repair services to ensure your safety on the road with optimal stopping power.</p>
+                    </div>
+                </div>
+                
+                <div class="engineer-card fade-in">
+                    <div class="engineer-image" style="background-image: url('https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="engineer-content">
+                        <h3>Electrical System Repair</h3>
+                        <p>Expert diagnosis and repair of all electrical components, from batteries and alternators to complex wiring systems.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Areas Section -->
+    <section class="service-areas">
+        <div class="container">
+            <h2>Our Service Areas</h2>
+            <div class="areas-grid">
+                <div class="area-card fade-in">
+                    <div class="area-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Engine Repair</h3>
+                    <p>Complete engine diagnostics, overhaul, and performance optimization for all makes and models.</p>
+                </div>
+                
+                <div class="area-card fade-in">
+                    <div class="area-icon">
+                        <i class="fas fa-brake-warning"></i>
+                    </div>
+                    <h3>Brake Systems</h3>
+                    <p>Comprehensive brake inspection, pad replacement, and fluid maintenance services.</p>
+                </div>
+                
+                <div class="area-card fade-in">
+                    <div class="area-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Electrical Systems</h3>
+                    <p>Diagnosis and repair of batteries, alternators, starters, and all electrical components.</p>
+                </div>
+                
+                <div class="area-card fade-in">
+                    <div class="area-icon">
+                        <i class="fas fa-snowflake"></i>
+                    </div>
+                    <h3>AC & Heating</h3>
+                    <p>AC system diagnostics, refrigerant recharge, compressor repair, and heating system services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Service Your Vehicle?</h2>
+            <p>Schedule your free pickup and let our certified experts take care of your car today.</p>
+            <div class="cta-buttons">
+                <a href="tel:07025190359" class="btn btn-large"><i class="fas fa-phone"></i> CALL NOW: 07025190359</a>
+                <a href="https://wa.me/2347025190359" class="btn btn-secondary btn-large"><i class="fab fa-whatsapp"></i> WHATSAPP FOR QUOTE</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-phone"></i> <strong>Phone/WhatsApp:</strong> 07025190359</p>
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> Olumidei372@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> Balogun off Awolowo Way, Ikeja, Lagos</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/2347025190359"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="services.html">Our Services</a>
+                    <a href="cars.html">Car Models</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Service Areas</h3>
+                    <p>Ikeja and surrounding areas</p>
+                    <p>Free pickup and delivery</p>
+                    <p>All car models serviced</p>
+                    <p>Hybrid and electric vehicles</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Business Hours</h3>
+                    <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                    <p>Saturday: 9:00 AM - 4:00 PM</p>
+                    <p>Sunday: Emergency Services Only</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Olubenz Auto Repair Engineer. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('mainMenu').classList.toggle('show');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('#mainMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mainMenu').classList.remove('show');
+            });
+        });
+
+        // Car model filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const carCards = document.querySelectorAll('.car-card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                // Show/hide car cards based on filter
+                carCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-brand') === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, 50);
+                    } else {
+                        card.classList.remove('visible');
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const carCardsAll = document.querySelectorAll('.car-card');
+        
+        const fadeInOnScroll = () => {
+            carCardsAll.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const cardVisible = 150;
+                
+                if (cardTop < window.innerHeight - cardVisible) {
+                    card.classList.add('visible');
+                }
+            });
+            
+            // Also handle other fade-in elements
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial state for fade-in elements
+        fadeElements.forEach(element => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        });
+        
+        // Set initial state for car cards
+        carCardsAll.forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        });
+        
+        window.addEventListener('scroll', fadeInOnScroll);
+        window.addEventListener('load', fadeInOnScroll);
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.padding = '0.8rem 0';
+                header.style.background = 'rgba(13, 20, 64, 0.98)';
+            } else {
+                header.style.padding = '1.2rem 0';
+                header.style.background = 'rgba(13, 20, 64, 0.95)';
+            }
+        });
+        
+        // Initialize all car cards as visible
+        window.addEventListener('load', () => {
+            carCardsAll.forEach(card => {
+                if (card.style.display !== 'none') {
+                    card.classList.add('visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
