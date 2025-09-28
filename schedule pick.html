@@ -1,3 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Models - OLUBENZ AUTO REPAIR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS Styles -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background: #f7f7f7;
+        }
+        .car-models {
+            padding: 40px 0;
+            background: #fff;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .car-models h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 24px;
+            color: #072c4c;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .car-filter {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .filter-btn {
+            background: #072c4c;
+            color: #fff;
+            border: none;
+            outline: none;
+            padding: 10px 22px;
+            margin: 0 5px 12px 5px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: #e1b12c;
+            color: #072c4c;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 25px;
+        }
+        .car-card {
+            background: #fcfcfc;
+            border-radius: 18px;
+            box-shadow: 0 2px 16px rgba(7,44,76,0.06);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.2s, transform 0.2s;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .car-card:not(.visible) {
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+        }
+        .car-card:hover {
+            box-shadow: 0 6px 24px rgba(7,44,76,0.14);
+            transform: translateY(-6px) scale(1.03);
+        }
+        .car-image {
+            width: 100%;
+            height: 170px;
+            background-size: cover;
+            background-position: center;
+        }
+        .car-content {
+            padding: 20px 18px 18px 18px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .car-content h3 {
+            font-size: 1.22rem;
+            margin: 0 0 8px 0;
+            color: #072c4c;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .car-content p {
+            color: #444;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        .car-specs {
+            list-style: none;
+            margin: 0;
+            padding: 0 0 12px 0;
+        }
+        .car-specs li {
+            font-size: 0.95rem;
+            color: #072c4c;
+            margin-bottom: 2px;
+        }
+        .car-content .btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #072c4c;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 18px;
+            font-size: 0.98rem;
+            transition: background 0.2s;
+            margin-top: auto;
+        }
+        .car-content .btn:hover {
+            background: #e1b12c;
+            color: #072c4c;
+        }
+        @media (max-width: 700px) {
+            .car-models {
+                padding: 14px 0;
+            }
+            .car-content {
+                padding: 14px 8px 14px 8px;
+            }
+            .cars-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
 <!-- Car Models Section -->
 <section class="car-models" id="cars">
     <div class="container">
@@ -110,3 +257,34 @@
         </div>
     </div>
 </section>
+
+<!-- JavaScript for Filtering -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.car-card');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', function () {
+            // Remove "active" from all buttons
+            buttons.forEach(b => b.classList.remove('active'));
+            // Add "active" to clicked button
+            btn.classList.add('active');
+
+            const filter = btn.getAttribute('data-filter');
+            
+            cards.forEach(card => {
+                // Show all if filter is "all"
+                if (filter === 'all' || card.getAttribute('data-brand') === filter) {
+                    card.classList.add('visible');
+                } else {
+                    card.classList.remove('visible');
+                }
+            });
+        });
+    });
+});
+</script>
+
+</body>
+</html>
